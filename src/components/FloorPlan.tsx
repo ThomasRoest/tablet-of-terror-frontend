@@ -1,4 +1,6 @@
+import { BoardRoom } from "./BoardRoom";
 import { Magic } from "./Magic";
+import { Placeholder } from "./Placeholder";
 
 const Gang = () => {
   return (
@@ -13,14 +15,14 @@ export const FloorPlan = () => {
     <div className="w-full h-full">
       <div className="grid grid-cols-16 grid-rows-16 gap-2 bg-white p-4 h-[700px]">
         <Magic />
-        <Magic />
-        <Magic />
-        <Magic />
+        <BoardRoom />
+        <Placeholder />
+        <Placeholder />
         <Gang />
-        <Magic />
-        <Magic />
-        <Magic />
-        <Magic />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
+        <Placeholder />
       </div>
     </div>
   );
