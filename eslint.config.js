@@ -18,7 +18,7 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
     },
     rules: {
-      "no-explicit-any": "warn",
+      "@typescript-eslint/no-explicit-any": "warn",
       ...reactHooks.configs.recommended.rules,
       'react-refresh/only-export-components': [
         'warn',
