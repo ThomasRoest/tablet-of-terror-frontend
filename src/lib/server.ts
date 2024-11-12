@@ -12,7 +12,7 @@ export type Vergaderruimte = {
 	capaciteit: number
 }
 
-async function get(url): Promise<any> {
+async function get(url: string): Promise<any> {
 	const response = await fetch(url);
 	return await response.json();
 }
