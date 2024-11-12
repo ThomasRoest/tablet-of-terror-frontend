@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import { getWerknemers } from "@/lib/server";
 
 export const BookingForm = ({
   value,
@@ -23,7 +24,24 @@ export const BookingForm = ({
   value: string;
   onSubmit: (name: string, value: string) => void;
 }) => {
+  const [personen, setPersonen] = useState<{ id: string }[]>([]);
+
   const [naam, setNaam] = useState("");
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await getWerknemers();
+
+      const personen = Object.entries(result).map((item) => {
+        return {
+          id: item[0],
+        };
+      });
+      setPersonen(personen);
+    };
+
+    getData();
+  }, []);
 
   const handleSubmit = useCallback(
     (event: FormEvent) => {
@@ -39,7 +57,6 @@ export const BookingForm = ({
       <DialogTrigger className="h-full w-full hover:bg-gray-300 transition">
         {value}
       </DialogTrigger>
-
       <DialogContent className="sm:max-w-[425px]">
         <form onSubmit={handleSubmit}>
           <DialogHeader>
@@ -59,10 +76,11 @@ export const BookingForm = ({
                   <SelectValue placeholder="Selecteer" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="Thomas">Thomas</SelectItem>
-                  <SelectItem value="Annemiek">Annemiek</SelectItem>
-                  <SelectItem value="Andre">Andre</SelectItem>
-                  <SelectItem value="Tom">Tom</SelectItem>
+                  {personen.map((persoon) => {
+                    return (
+                      <SelectItem value={persoon.id}>{persoon.id}</SelectItem>
+                    );
+                  })}
                 </SelectContent>
               </Select>
             </div>
@@ -105,9 +123,7 @@ export const BookingForm = ({
           </div>
           <div className="flex justify-end">
             <DialogClose asChild>
-              <Button type="submit">
-                Reserveer
-              </Button>
+              <Button type="submit">Reserveer</Button>
             </DialogClose>
           </div>
         </form>
