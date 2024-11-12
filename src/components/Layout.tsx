@@ -13,13 +13,13 @@ export const Layout = ({ children }: { children: ReactNode }) => {
           </li>
           <div className="flex gap-4">
             <li>
-              <Link href="/ruimtes">ruimtes</Link>
-            </li>
-            <li>
               <Link href="/plattegrond">plattegrond</Link>
             </li>
             <li>
               <Link href="/organisatie">organisatie</Link>
+            </li>
+            <li>
+              <Link href="/ruimtes">ruimtes</Link>
             </li>
           </div>
         </ul>
