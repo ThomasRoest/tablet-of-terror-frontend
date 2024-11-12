@@ -12,7 +12,7 @@ const Gang = () => {
 
 export const FloorPlan = () => {
   return (
-    <div className="w-full h-full">
+    <div className="h-full w-[1200px] mx-auto">
       <div className="grid grid-cols-16 grid-rows-16 gap-2 bg-white p-4 h-[700px]">
         <Magic />
         <BoardRoom />

@@ -76,10 +76,7 @@ export const BookingsList = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[625px]">
         <DialogHeader>
-          <DialogTitle>Room Bookings</DialogTitle>
-          <DialogDescription>
-            Here's a list of all current room bookings.
-          </DialogDescription>
+          <DialogTitle>Boardroom reserveringen</DialogTitle>
         </DialogHeader>
         <div className="mt-4">
           <Table>
