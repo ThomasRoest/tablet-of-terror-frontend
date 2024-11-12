@@ -1,16 +1,16 @@
+// const Example = () => {
+//     return <div>my component</div>;
+// };
+
 const Block = () => {
   return (
-    <div className="bg-gray-100 col-span-1 border flex items-center justify-center">
-      A
-    </div>
+    <div className="bg-white col-span-1 border flex items-center justify-center" />
   );
 };
 
 const Table = () => {
   return (
-    <div className="bg-amber-500 col-span-1 border flex items-center justify-center">
-      A
-    </div>
+    <div className="bg-emerald-300 col-span-1 border flex items-center justify-center" />
   );
 };
 
@@ -18,32 +18,17 @@ const Table = () => {
 const RoomSmall = () => {
   return (
     <div className="col-span-4 row-span-7 bg-blue-200 font-semibold grid grid-cols-4">
-      {Array.from({ length: 4 }).map((_, index) => {
-        return <Block key={index} />;
-      })}
-      <Block />
-      <Table />
-      <Table />
-      <Block />
+      <div className="bg-white col-span-4 border flex items-center justify-center" />
 
-      <Block />
-      <Table />
-      <Table />
-      <Block />
+      <div className="bg-white col-span-1 row-span-4 border flex items-center justify-center" />
+      <div className="bg-white col-span-1 row-span-2 border flex items-center justify-center" />
+      <div className="bg-white col-span-1 row-span-2 border flex items-center justify-center" />
 
-      <Block />
-      <Table />
-      <Table />
-      <Block />
+      <div className="bg-white col-span-1 row-span-4 border flex items-center justify-center" />
+      <div className="bg-white col-span-1 row-span-2 border flex items-center justify-center" />
+      <div className="bg-white col-span-1 row-span-2 border flex items-center justify-center" />
 
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      {Array.from({ length: 4 }).map((_, index) => {
-        return <Block key={index} />;
-      })}
+      <div className="bg-white col-span-4 border flex items-center justify-center" />
     </div>
   );
 };
@@ -52,53 +37,53 @@ const RoomSmall = () => {
 const RoomLarge = () => {
   return (
     <div className="col-span-8 row-span-7 bg-blue-200 font-semibold grid grid-cols-8">
-      {Array.from({ length: 8 }).map((_, index) => {
+      <div className="bg-white col-span-8 border flex items-center justify-center" />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <Block />
+      <Table />
+      <Table />
+      <Block />
+
+      <div className="bg-white col-span-8 border flex items-center justify-center" />
+
+      {/* {Array.from({ length: 8 }).map((_, index) => {
         return <Block key={index} />;
-      })}
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-
-      <Block />
-      <Table />
-      <Table />
-      <Block />
-      
-      {Array.from({ length: 8 }).map((_, index) => {
-        return <Block key={index} />;
-      })}
+      })} */}
     </div>
   );
 };
@@ -117,11 +102,13 @@ export const FloorPlan = () => {
       <div className="grid grid-cols-16 grid-rows-16 gap-2 bg-white p-4 h-[700px]">
         <RoomSmall />
         <RoomSmall />
-        <RoomLarge />
+        <RoomSmall />
+        <RoomSmall />
         <Gang />
         <RoomSmall />
         <RoomSmall />
-        <RoomLarge />
+        <RoomSmall />
+        <RoomSmall />
       </div>
     </div>
   );
