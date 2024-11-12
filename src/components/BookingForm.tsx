@@ -1,4 +1,4 @@
-import { FormEvent, useCallback, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -15,14 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
-
-const personsData = [
-  { id: "1", name: "John Doe", email: "john@example.com" },
-  { id: "2", name: "Jane Smith", email: "jane@example.com" },
-  { id: "3", name: "Bob Johnson", email: "bob@example.com" },
-  { id: "4", name: "Alice Brown", email: "alice@example.com" },
-  { id: "5", name: "Charlie Davis", email: "charlie@example.com" },
-];
+import { getWerknemers } from "@/lib/server.ts";
 
 export const BookingForm = ({
   value,
@@ -31,8 +24,25 @@ export const BookingForm = ({
   value: string;
   onSubmit: (name: string, value: string) => void;
 }) => {
-  const [naam, setNaam] = useState("");
-  
+	const [personen, setPersonen] = useState<{ id: string }[]>([]);
+
+	const [naam, setNaam] = useState("");
+
+	useEffect(() => {
+		const getData = async () => {
+			const result = await getWerknemers();
+
+			const personen = Object.entries(result).map((item) => {
+				return {
+					id: item[0],
+				};
+			});
+			setPersonen(personen);
+		};
+
+		getData();
+	}, []);
+
   const handleSubmit = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
@@ -66,13 +76,11 @@ export const BookingForm = ({
                   <SelectValue placeholder="Selecteer" />
                 </SelectTrigger>
                 <SelectContent>
-                  {personsData.map((persoon) => {
-                    return (
-                      <SelectItem key={persoon.id} value={persoon.name}>
-                        {persoon.name}
-                      </SelectItem>
-                    );
-                  })}
+					{personen.map((persoon) => {
+						return (
+							<SelectItem key={persoon.id} value={persoon.id}>{persoon.id}</SelectItem>
+						);
+					})}
                 </SelectContent>
               </Select>
             </div>

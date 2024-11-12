@@ -1,26 +1,33 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BookingForm } from "./BookingForm";
 import { ClearModal } from "./ClearModal";
+import { getReserveringen, insertReservering, removeReservering } from "@/lib/server.ts";
 
 export const Magic = () => {
-  const [selectedTables, setSelectedTables] = useState<
-    { value: string; name: string }[]
-  >([]);
+	const [ reserveringen, setReserveringen ] = useState<Record<string, string>|undefined>();
+	useEffect(() => {
+		getReserveringen().then(setReserveringen);
+	}, []);
+	console.log("reserveringen", reserveringen);
+
+  // const [selectedTables, setSelectedTables] = useState<
+  //   { value: string; name: string }[]
+  // >([]);
 
   const isSelected = (value: string): boolean => {
-    return selectedTables.map((item) => item.value).includes(value);
+    return !!reserveringen && !!reserveringen[value];
   };
 
   const onSubmit = (name: string, value: string): void => {
-    setSelectedTables((state) => {
-      return [...state, { name, value }];
-    });
+	  insertReservering(value, name).then(() => {
+		  getReserveringen().then(setReserveringen);
+	  });
   };
 
   const clear = (value: string): void => {
-    setSelectedTables((state) => {
-      return state.filter((item) => item.value !== value);
-    });
+	  removeReservering(value, "gweweg").then(() => {
+		  getReserveringen().then(setReserveringen);
+	  });
   };
   return (
     <div className="col-span-4 row-span-7 font-semibold grid grid-cols-4 border gap-1">

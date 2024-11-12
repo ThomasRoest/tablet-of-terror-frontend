@@ -1,4 +1,12 @@
-import { Bureau, getBureaus, getVergaderruimtes, getWerknemers, Vergaderruimte, Werknemer } from "@/lib/server.ts";
+import {
+	Bureau,
+	getBureaus,
+	getReserveringen,
+	getVergaderruimtes,
+	getWerknemers,
+	Vergaderruimte,
+	Werknemer
+} from "@/lib/server.ts";
 import { useEffect, useState } from "react";
 
 export const HomePage = () => {
@@ -14,6 +22,10 @@ export const HomePage = () => {
 	useEffect(() => {
 		getVergaderruimtes().then(setVergaderruimtes);
 	}, []);
+	const [ reserveringen, setReserveringen ] = useState<Record<string, string>|undefined>();
+	useEffect(() => {
+		getReserveringen().then(setReserveringen);
+	}, []);
 
 	useEffect(() => {
 		console.log("bureaus", bureaus);
@@ -24,6 +36,9 @@ export const HomePage = () => {
 	useEffect(() => {
 		console.log("vergaderruimtes", vergaderruimtes);
 	}, [werknemers]);
+	useEffect(() => {
+		console.log("reserveringen", reserveringen);
+	}, [reserveringen]);
 
     return <div>home</div>;
 };
