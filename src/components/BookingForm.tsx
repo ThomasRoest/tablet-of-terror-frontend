@@ -78,7 +78,7 @@ export const BookingForm = ({
                 <SelectContent>
                   {personen.map((persoon) => {
                     return (
-                      <SelectItem value={persoon.id}>{persoon.id}</SelectItem>
+                      <SelectItem key={persoon.id} value={persoon.id}>{persoon.id}</SelectItem>
                     );
                   })}
                 </SelectContent>
