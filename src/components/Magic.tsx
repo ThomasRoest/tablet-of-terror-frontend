@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BookingForm } from "./BookingForm";
+import { ClearModal } from "./ClearModal";
 
 export const Magic = () => {
   const [selectedTables, setSelectedTables] = useState<
@@ -15,17 +16,26 @@ export const Magic = () => {
       return [...state, { name, value }];
     });
   };
+
+  const clear = (value: string): void => {
+    setSelectedTables((state) => {
+      return state.filter((item) => item.value !== value);
+    });
+  };
   return (
     <div className="col-span-4 row-span-7 font-semibold grid grid-cols-4 border gap-1">
       <div className="bg-white col-span-4  flex items-center justify-center" />
-
       <div className="bg-white col-span-1 row-span-4 flex items-center justify-center" />
       <div
         className={`col-span-1 row-span-2 flex items-center justify-center  rounded ${
           isSelected("L") ? "bg-red-300" : "bg-emerald-300"
         }`}
       >
-        <BookingForm value="L" onSubmit={onSubmit} />
+        {isSelected("L") ? (
+          <ClearModal value={"L"} onClear={clear} />
+        ) : (
+          <BookingForm value="L" onSubmit={onSubmit} />
+        )}
       </div>
       <div className="bg-white col-span-1 row-span-2 flex items-center justify-center" />
 
@@ -35,14 +45,22 @@ export const Magic = () => {
           isSelected("M") ? "bg-red-300" : "bg-emerald-300"
         }`}
       >
-        <BookingForm value="M" onSubmit={onSubmit} />
+        {isSelected("M") ? (
+          <ClearModal value={"M"} onClear={clear} />
+        ) : (
+          <BookingForm value="M" onSubmit={onSubmit} />
+        )}
       </div>
       <div
         className={`col-span-1 row-span-2 flex items-center justify-center  rounded ${
           isSelected("N") ? "bg-red-300" : "bg-emerald-300"
         }`}
       >
-        <BookingForm value="N" onSubmit={onSubmit} />
+        {isSelected("N") ? (
+          <ClearModal value={"N"} onClear={clear} />
+        ) : (
+          <BookingForm value="N" onSubmit={onSubmit} />
+        )}
       </div>
       <div className="bg-white col-span-4 flex items-center justify-center ">
         <span className="text-sm text-gray-500">Magic</span>
